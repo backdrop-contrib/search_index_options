@@ -82,4 +82,11 @@ TROUBLESHOOTING
 
   So you have to wait for the search index to get completely re-build. If you
   can't wait, then consider using the Search Index Wipe
-  (https://www.drupal.org/project/searchindex_wipe) module.
+  (https://github.com/backdrop-contrib/searchindex_wipe) module.
+  
+  
+  CREDITS
+  -------
+  
+  Initially created for Drupal (https://www.drupal.org/project/search_index) and 
+  ported to Backdrop by Alan Mels (https://github.com/alanmels).
