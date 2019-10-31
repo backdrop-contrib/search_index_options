@@ -1,0 +1,7 @@
+name = Search Index Options
+description = Allows indexing only selected content types or nodes and provides detailed search index statistics per content type.
+backdrop = 1.x
+type = module
+dependencies[] = search
+package = Other
+configure = admin/config/search/settings

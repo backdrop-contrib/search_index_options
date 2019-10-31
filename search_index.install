@@ -1,0 +1,76 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the search index module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function search_index_install() {
+  // Declare $search_index_content_types varaible.
+  $node_type_get_types = node_type_get_types();
+  foreach ($node_type_get_types as $type => $content_type) {
+    $content_types[$type] = '0';
+  }
+  config_set('search_index.settings', 'search_index_content_types', $content_types);
+}
+
+/**
+ * Implements hook_schema().
+ */
+
+/**
+ * @todo Please document this function.
+ * @see http://drupal.org/node/1354
+ */
+function search_index_schema() {
+  $schema['search_index_excluded'] = array(
+    // Example (partial) specification for table "node".
+    'description' => 'The base table for nodes.',
+    'fields' => array(
+      'nid' => array(
+        'description' => 'The primary identifier for a node.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'type' => array(
+        'description' => 'The {node_type} of this node.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'title' => array(
+        'description' => 'The title of this node, always treated as non-markup plain text.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array(
+      'nid',
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Create database on update.
+ */
+
+// TODO The old hook_update_N functions cannot be applied to Backdrop.
+function search_index_update_7100() { }
+
+/**
+ * Implements hook_uninstall().
+ */
+function search_index_uninstall() {
+  // Remove $search_index_content_types variable.
+  config_clear('search_index.settings', 'search_index_content_types');
+  // Remove search_index database table.
+  db_query('DROP TABLE {search_index_excluded}');
+}
