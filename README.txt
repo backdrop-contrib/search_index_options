@@ -55,7 +55,7 @@ INSTALLATION
 CONFIGURATION
 -------------
 
-* Go to the Search settings page (admin/config/search/settings), select content
+* Go to the Search settings page (/admin/config/search/settings), select content
   types which you would like to index under the Search index section and press
   on the Save Configuration button.
 
@@ -73,7 +73,7 @@ TROUBLESHOOTING
 
 * If you excluded certain content types or certain nodes from indexing, but they
   still persist to appear in search results even after re-indexing, then please
-  pay special attention to what the `admin/config/search/settings/reindex` page
+  pay special attention to what the `/admin/config/search/settings/reindex` page
   says:
 
     "The search index is not cleared but systematically updated to reflect the
