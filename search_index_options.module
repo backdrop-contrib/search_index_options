@@ -10,7 +10,6 @@
  * Implements hook_form_alter().
  */
 function search_index_options_form_alter(&$form, &$form_state, $form_id) {
-
   // Get content types included for indexing.
   $search_index_options_content_types = config_get('search_index_options.settings', 'content_type_options');
   #sdpm($search_index_options_content_types);
@@ -109,17 +108,7 @@ function search_index_options_form_alter(&$form, &$form_state, $form_id) {
         $remaining_count = format_plural($remaining, '<strong>1</strong> node left to index or excluded from indexing.', '<strong>@count</strong> nodes left to index or excluded from indexing.');
         $percentage = ((int) min(100, 100 * ($total - $remaining) / max(1, $total))) . '%';
         $report .= '<p>' . t('<strong>%percentage</strong> of total <strong>%total</strong> nodes have been indexed.', array('%percentage' => $percentage, '%total' => $total)) . ' ' . $remaining_count . '</p>';
-        $form['status'] = array(
-          '#type' => 'fieldset',
-          '#title' => t('Indexing status'),
-        );
-        $form['status']['status'] = array('#markup' => $report);
-        // Implement the re-index button.
-        $form['status']['wipe'] = array(
-          '#type' => 'submit',
-          '#value' => t('Re-index site'),
-          '#submit' => array('search_admin_reindex_submit'),
-        );
+        $form['indexing']['status'] = array('#markup' => $report);
       }
     }
   }
@@ -340,12 +329,11 @@ function search_index_options_update_index() {
 
   // Process nodes of only selected content types.
   foreach ($result as $node) {
-    #$node = node_load($node->nid);
+    $node = node_load($node->nid);
     $opted = db_query('SELECT nid FROM {search_index_options} WHERE nid = :nid', array(':nid' => $node->nid))->fetchField();
     if ((!isset($search_index_options_content_types) && !isset($search_index_options_nodes)) || (isset($search_index_options_content_types) && !isset($search_index_options_nodes))) {
-      // None of content types or node level index enabled yet or
-      // some content type in with node level off, so all must go in.
-      dpm($node);
+      // None of content types or node level index enabled yet, or
+      // some content type included with node level off, so all must go in.
       _node_index_node($node);
     }
     elseif (!isset($search_index_options_content_types) && isset($search_index_options_nodes)) {
@@ -371,7 +359,7 @@ function search_index_options_update_index() {
         $opted = db_query('SELECT nid FROM {search_index_options} WHERE type = :type', array(':type' => $type))->fetchCol();
         if (!empty($opted)) {
           foreach ($opted as $key => $nid) {
-            #$node = node_load($nid);
+            $node = node_load($nid);
             _node_index_node($node);
           }
         }
