@@ -12,7 +12,6 @@
 function search_index_options_form_alter(&$form, &$form_state, $form_id) {
   // Get content types included for indexing.
   $search_index_options_content_types = config_get('search_index_options.settings', 'content_type_options');
-  #sdpm($search_index_options_content_types);
   $search_index_options_nodes = config_get('search_index_options.settings', 'node_option');
 
   if ($form_id == 'search_admin_settings') {
