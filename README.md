@@ -49,7 +49,7 @@ Installation
 ------------
 * Download the project from https://backdropcms.org/project/search_index_options
 * Go to the Functionality page (`/admin/modules`) and enable the module.
-  Alternatively, you can just run `drop en search_index_options` command on CLI.
+  Alternatively, you can just run `drush en search_index_options` command on CLI.
 
 
 Configuration
@@ -84,8 +84,8 @@ Troubleshooting
   (https://github.com/backdrop-contrib/searchindex_wipe) module.
 
 
-  Credits
-  -------
+Credits
+-------
 
-  Initially created for Drupal (https://www.drupal.org/project/search_index) and
-  ported to Backdrop by Alan Mels (https://github.com/alanmels).
+Initially created for Drupal (https://www.drupal.org/project/search_index) and
+ported to Backdrop by Alan Mels (https://github.com/alanmels).
