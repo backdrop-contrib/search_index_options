@@ -1,3 +1,12 @@
+**Important note:** This feature is now included in Backdrop core, so you no
+longer need this module.
+
+**If you are running Backdrop version 1.16.0 or later, please disable and
+uninstall this module. Use the core setting instead.**
+
+There have been issues reported of performance problems stemming from this
+module being enabaled on Backdrop 1.16.0 or later.
+
 --------------------------------------------------------------------------------
                              Search Index Options
      Brought by Backdrop aficionados at AltaGrade.com <info@altagrade.com>
